@@ -1,0 +1,2 @@
+cmp_17xx_40xx.c:53:6:Chip_CMP_Init	8	static
+cmp_17xx_40xx.c:59:6:Chip_CMP_DeInit	8	static

@@ -1,0 +1,8 @@
+crc_17xx_40xx.h:168:20:Chip_CRC_Write8	16	static
+crc_17xx_40xx.h:178:20:Chip_CRC_Write16	16	static
+crc_17xx_40xx.h:188:20:Chip_CRC_Write32	16	static
+crc_17xx_40xx.h:197:24:Chip_CRC_Sum	4	static
+crc_17xx_40xx.c:53:6:Chip_CRC_UseDefaultConfig	16	static
+crc_17xx_40xx.c:75:10:Chip_CRC_CRC8	16	static
+crc_17xx_40xx.c:87:10:Chip_CRC_CRC16	16	static
+crc_17xx_40xx.c:99:10:Chip_CRC_CRC32	16	static

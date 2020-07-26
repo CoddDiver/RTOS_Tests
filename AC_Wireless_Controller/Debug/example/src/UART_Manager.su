@@ -1,0 +1,14 @@
+core_cm4.h:1467:22:NVIC_EnableIRQ	16	static
+core_cm4.h:1480:22:NVIC_DisableIRQ	16	static
+core_cm4.h:1550:22:NVIC_SetPriority	16	static
+uart_17xx_40xx.h:337:20:Chip_UART_IntEnable	16	static
+uart_17xx_40xx.h:390:20:Chip_UART_SetupFIFOS	16	static
+uart_17xx_40xx.h:405:20:Chip_UART_ConfigData	16	static
+UART_Manager.c:32:6:UART4_IRQHandler	8	static
+UART_Manager.c:36:6:Setup_UART_SELECTION	8	static
+UART_Manager.c:64:6:Send_UART	16	static
+UART_Manager.c:68:6:Poll_UART2	8	static
+UART_Manager.c:88:6:Poll_UART	8	static
+UART_Manager.c:106:6:processHTML	8	static
+UART_Manager.c:123:6:deinnit_UART_SELECTION	8	static
+UART_Manager.c:129:5:readEspResponse	16	static

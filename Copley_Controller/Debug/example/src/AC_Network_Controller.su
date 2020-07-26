@@ -1,0 +1,8 @@
+AC_Network_Controller.c:109:13:prvSetupHardware	8	static
+AC_Network_Controller.c:128:6:Fade	8	static
+AC_Network_Controller.c:140:6:BreakIn	8	static
+AC_Network_Controller.c:230:6:BuildOut	8	static
+AC_Network_Controller.c:261:6:sendmetoo	8	static
+AC_Network_Controller.c:274:6:application	8	static
+AC_Network_Controller.c:327:6:Admin_setup	4	static
+AC_Network_Controller.c:344:5:main	24	static

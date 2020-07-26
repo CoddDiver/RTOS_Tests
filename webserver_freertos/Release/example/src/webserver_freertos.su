@@ -1,0 +1,4 @@
+webserver_freertos.c:83:13:tcpip_init_done_signal	0	static
+webserver_freertos.c:90:13:vSetupIFTask	56	static
+webserver_freertos.c:205:6:msDelay	0	static
+webserver_freertos.c:214:5:main	24	static

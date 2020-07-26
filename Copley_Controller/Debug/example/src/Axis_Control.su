@@ -1,0 +1,7 @@
+Axis_Control.c:48:6:DriveAxisInitialise	16	static
+Axis_Control.c:82:6:Motor_Absolute	8	static
+Axis_Control.c:93:6:Read_Output_Encoder	8	static
+Axis_Control.c:98:6:Output_Encoder_Vel	8	static
+Axis_Control.c:107:6:DriveMotor	8	static
+Axis_Control.c:119:6:Servo_Scheduler	8	static
+Axis_Control.c:153:6:EnableMe	448	static

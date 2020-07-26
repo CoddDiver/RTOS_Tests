@@ -1,0 +1,2 @@
+EEPROM_Manager.c:18:6:SaveFloat	32	static
+EEPROM_Manager.c:22:7:ReadFloat	32	static

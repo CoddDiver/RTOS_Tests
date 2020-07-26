@@ -1,0 +1,5 @@
+TCP_Connection.c:38:5:tcp_make_connection	8	static
+TCP_Connection.c:61:1:tcp_connection_thread	24	static
+TCP_Connection.c:126:6:tcp_read	8	static
+TCP_Connection.c:137:6:tcp_send	16	static
+TCP_Connection.c:149:6:tcp_connection_init	16	static

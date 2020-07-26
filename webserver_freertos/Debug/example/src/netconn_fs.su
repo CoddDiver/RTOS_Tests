@@ -1,0 +1,5 @@
+netconn_fs.c:84:12:supported_method	16	static
+netconn_fs.c:94:17:get_version	24	static
+netconn_fs.c:103:1:http_server_netconn_serve	64	static
+netconn_fs.c:243:1:http_server_netconn_thread	32	static
+netconn_fs.c:283:1:http_server_netconn_init	16	static

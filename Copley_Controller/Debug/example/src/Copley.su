@@ -1,0 +1,9 @@
+Copley.c:23:6:readCopleyResponse	24	static
+Copley.c:45:6:Copley_Disable	8	static
+Copley.c:50:6:Copley_Enable	8	static
+Copley.c:58:6:Copley_Configure	8	static
+Copley.c:106:6:Copley_Read	16	static
+Copley.c:116:6:Copley_Send_Demand	16	static
+Copley.c:142:6:Set_Direction	16	static
+Copley.c:153:6:Copley_Get_Pos	8	static
+Copley.c:160:6:Copley_Wait	16	static

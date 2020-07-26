@@ -1,0 +1,14 @@
+lpc17xx_40xx_emac.c:142:13:lpc_rxqueue_pbuf	8	static
+lpc17xx_40xx_emac.c:347:14:lpc_tx_setup	16	static
+lpc17xx_40xx_emac.c:650:14:lpc_etharp_output	0	static
+lpc17xx_40xx_emac.c:665:7:lpc_rx_queue	16	static
+lpc17xx_40xx_emac.c:700:6:lpc_enetif_input	24	static
+lpc17xx_40xx_emac.c:531:13:vPacketReceiveTask	16	static
+lpc17xx_40xx_emac.c:738:6:lpc_tx_reclaim	24	static
+lpc17xx_40xx_emac.c:547:13:vTransmitCleanupTask	40	static
+lpc17xx_40xx_emac.c:745:7:lpc_tx_ready	8	static
+lpc17xx_40xx_emac.c:400:14:lpc_low_level_output	40	static
+lpc17xx_40xx_emac.c:761:6:ETH_IRQHandler	16	static
+lpc17xx_40xx_emac.c:799:6:lpc_emac_set_duplex	0	static
+lpc17xx_40xx_emac.c:810:6:lpc_emac_set_speed	0	static
+lpc17xx_40xx_emac.c:821:7:lpc_enetif_init	32	static

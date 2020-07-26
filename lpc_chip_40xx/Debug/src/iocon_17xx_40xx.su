@@ -1,0 +1,2 @@
+iocon_17xx_40xx.h:237:20:Chip_IOCON_PinMuxSet	24	static
+iocon_17xx_40xx.c:76:6:Chip_IOCON_SetPinMuxing	32	static
