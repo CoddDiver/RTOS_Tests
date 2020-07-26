@@ -106,6 +106,6 @@ int pollCopley() {
 			return Copley.Response;
 		}
 	}
-	return UNKNOWN;
+	return COPLEY_UNKNOWN;
 }
 

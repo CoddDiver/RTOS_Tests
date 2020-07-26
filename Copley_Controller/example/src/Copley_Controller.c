@@ -215,6 +215,7 @@ void BreakIn() {
 				Drive.Command = M4_JOYSTICK;
 				enablecount++;
 				sprintf(header, "%s", "Enable");
+				Copley.Case_Status = COP_TRY_ENABLE;
 
 				Enable = 1;
 
@@ -232,7 +233,7 @@ void BreakIn() {
 				End_me(0);
 				Drive.SysProfilerVel = 0;
 				Enable = 0;
-
+                Copley.Case_Status = COP_TRY_DISABLE;
 				break;
 			case 20:  //Change gain
 				sprintf(header, "%s", "GAIN_UPDATED");
@@ -287,37 +288,68 @@ void BuildOut() {
 	strcat(OutBound, space);
 }
 
-void Copley_Manager(void *pvParameters) {
 
-	Copley.Read_Status = 0;
-	Copley_Configure();
-	Copley.Read_Status = 1;
-	DEBUGOUT("COPLEY CONFIGURED\r\n");
+void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 
-	//Fade();
-	while (Copley.Response != COPLEY_ERROR) {
-
-		Board_LED_Set(3, LED_3_toggle);
-		LED_3_toggle = !LED_3_toggle;
-		if (Enable == 1){
-			Copley.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
-			Copley_Send_Demand(Copley.VelDemand);
-		}
-		Copley_Get_Pos();
-		Drive.System_position = Copley.Position;
-		Drive.System_position = Drive.System_position / Drive.Ratio;
-		//DEBUGOUT("Pos = %d\r", Copley.Position);
-
-		vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
-		//Main_Wait(1);
-
-	}
+	Copley.Case_Status = COP_STARTING;
 	while (1) {
-		Board_LED_Set(3, LED_3_toggle);
-		LED_3_toggle = !LED_3_toggle;
-		Main_Wait(10);
-		//Recover here somehow
+		while (Copley.Response != COPLEY_ERROR) {
+			// Will need an external keep alive is case of no responses at all!
+			vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
+
+			switch (Copley.Case_Status) {
+
+			case COP_STARTING:
+				Copley_Configure(); // Set up leaving Copley disabled
+				DEBUGOUT("COPLEY CONFIGURED\r\n");
+				Copley.Case_Status = COP_DISABLED;
+
+				break;
+			case COP_DISABLED:
+				Copley_Get_Pos();
+				Drive.System_position = Copley.Position;
+				Drive.System_position = Drive.System_position / Drive.Ratio;
+				// Wait for parent application to enable the drives using state COP_TRY_ENABLE
+				break;
+			case COP_TRY_ENABLE:
+				Copley_Enable();
+
+				break;
+			case COP_ENABLED:
+
+				Board_LED_Set(3, LED_3_toggle);
+				LED_3_toggle = !LED_3_toggle;
+				if (Enable == 1) {
+					Copley.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
+					Copley_Send_Demand(Copley.VelDemand);
+				}
+				Copley_Get_Pos();
+				Drive.System_position = Copley.Position;
+				Drive.System_position = Drive.System_position / Drive.Ratio;
+				//DEBUGOUT("Pos = %d\r", Copley.Position);
+
+				//vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
+				break;
+			case COP_TRY_DISABLE:
+				Copley_Disable();
+
+				break;
+			case COP_FAULT:
+
+				break;
+			default:
+				DEBUGOUT("DROPPED OFF COPLEY STATE MACHINE");
+			}
+		}
+		DEBUGOUT("******** COPLEY RECOVERY PROGRAM *************");
+		// Should call any system level kill code as required, or delegate to parent on COP_FAULT.
+		End_me(0);
+		Drive.SysProfilerVel = 0;
+		Enable = 0;
+		Copley.Case_Status = COP_FAULT;  // Parent must restart as required.
+		Copley.Response = COPLEY_UNKNOWN;  // Re-Enter case state machine until next Copley Response update
 	}
+
 }
 
 void TCP_Manager(void *pvParameters) {
@@ -393,8 +425,6 @@ int main(void) {
 	Admin_setup();
 	// Initialise the Axis array
 	DriveAxisParameters(&Drive, COPLEY);
-
-	//sys_thread_new("sendmetoo", sendmetoo, NULL, DEFAULT_THREAD_STACKSIZE, DEFAULT_THREAD_PRIO);
 
 	xTaskCreate(application, (signed char* ) "Application",
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),

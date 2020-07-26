@@ -21,11 +21,11 @@ char *position;
 char Response[32];
 
  int readCopleyResponse(char *ToRead) {
-	char copResponse = UNKNOWN;
+	char copResponse = COPLEY_UNKNOWN;
 	if (strstr(ToRead, "v ") != NULL) {
 		position = strtok(ToRead, "v ");
 		Copley.Position = atoi(position);
-		copResponse = POSITION;
+		copResponse = COPLEY_POSITION;
 	} else if (strstr(ToRead, "ok") != NULL) {
 		copResponse = COPLEY_OK;
 	} else if (strstr(ToRead, "e 10") != NULL) {
@@ -45,6 +45,8 @@ char Response[32];
 void Copley_Disable(void){
 	Send_UART("s r0x24 0\r");
 	Copley_Read(COPLEY_OK);
+	Copley.Case_Status = COP_DISABLED;
+
 }
 
 void Copley_Enable(void){
@@ -52,6 +54,7 @@ void Copley_Enable(void){
 	Copley_Read(COPLEY_OK);
 	Send_UART("s r0x24 21\r");
 	Copley_Read(COPLEY_OK);
+	Copley.Case_Status = COP_ENABLED;
 
 }
 
@@ -77,7 +80,7 @@ void Copley_Configure() {
 	Copley_Wait(200);
 
 	DEBUGOUT("Done Baud Rate\r\n");
-	Send_UART("s r0x24 21\r"); //set desired sate to trajectory generator drives position loop
+	Send_UART("s r0x24 0\r"); //set desired sate to trajectory generator drives position loop 21
 								// Also enables the drive
 	Copley_Read(COPLEY_OK);
 
@@ -95,8 +98,8 @@ void Copley_Configure() {
 	Send_UART("s r0xcd 1638400\r"); // set max decel to x in units of 10 counts/sec^2
 	Copley_Read(COPLEY_OK);
 
-	Send_UART("s r0xcb 0\r");  // Set velocity to x in units of 0.1 counts/sec
-	Copley_Read(COPLEY_OK);
+	//Send_UART("s r0xcb 0\r");  // Set velocity to x in units of 0.1 counts/sec
+	//Copley_Read(COPLEY_OK);
 
 	Send_UART("t 1\r");  // trajectory update command
 	Copley_Read(COPLEY_OK);
@@ -115,7 +118,7 @@ void Copley_Read(int _why){
 
 void Copley_Send_Demand(int _speed) {
 // _speed to be in units of motor encoder counts/s
-	if (Copley.Read_Status >= 1) {
+	if (Copley.Case_Status == COP_ENABLED) {
 
 		if (_speed >= 0) {
 			temp_dir = 1;
@@ -151,10 +154,10 @@ void Set_Direction(int _dir) {
 }
 
 void Copley_Get_Pos(void){
-	if (Copley.Read_Status >= 1) {
-		Send_UART("g r0x32\r");  // Read position register (in encoder counts)
-		Copley_Read(POSITION);
-	}
+
+	Send_UART("g r0x32\r");  // Read position register (in encoder counts)
+	Copley_Read(COPLEY_POSITION);
+
 }
 
 void Copley_Wait(int ms) {
