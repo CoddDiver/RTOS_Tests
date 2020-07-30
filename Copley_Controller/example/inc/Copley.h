@@ -37,5 +37,6 @@ void Copley_Read(int _why);
 void Copley_Send_Demand(int _speed);
 void Set_Direction(int _dir);
 void Copley_Get_Pos(void);
+void Copley_Set_Pos(float _pos);
 void Copley_Wait(int ms);
 #endif /* INC_COPLEY_H_ */

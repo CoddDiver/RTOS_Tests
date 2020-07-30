@@ -133,6 +133,17 @@ static void prvSetupHardware(void) {
 /*****************************************************************************
  * Public functions
  ****************************************************************************/
+void Enable_Drive(void) {
+	Drive.Command = M4_JOYSTICK;
+
+	sprintf(header, "%s", "Enable");
+	Drive.SysDemandPos = Drive.System_position;
+
+	Copley.Case_Status = COP_TRY_ENABLE;
+
+
+
+}
 void Fade(void) {
 	Drive.Fade_Target = pan;
 	Drive.Fade_Time = duration;
@@ -212,12 +223,8 @@ void BreakIn() {
 				}
 				break;
 			case 3:  // Enable
-				Drive.Command = M4_JOYSTICK;
 				enablecount++;
-				sprintf(header, "%s", "Enable");
-				Copley.Case_Status = COP_TRY_ENABLE;
-
-				Enable = 1;
+				Enable_Drive();
 
 				break;
 			case 10: //Polling
@@ -233,7 +240,7 @@ void BreakIn() {
 				End_me(0);
 				Drive.SysProfilerVel = 0;
 				Enable = 0;
-                Copley.Case_Status = COP_TRY_DISABLE;
+				Copley.Case_Status = COP_TRY_DISABLE;
 				break;
 			case 20:  //Change gain
 				sprintf(header, "%s", "GAIN_UPDATED");
@@ -288,7 +295,6 @@ void BuildOut() {
 	strcat(OutBound, space);
 }
 
-
 void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 
 	Copley.Case_Status = COP_STARTING;
@@ -312,8 +318,9 @@ void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 				// Wait for parent application to enable the drives using state COP_TRY_ENABLE
 				break;
 			case COP_TRY_ENABLE:
+				//Application must check position profiler is clean for startup
 				Copley_Enable();
-
+				Enable = 1;
 				break;
 			case COP_ENABLED:
 
@@ -347,7 +354,7 @@ void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 		Drive.SysProfilerVel = 0;
 		Enable = 0;
 		Copley.Case_Status = COP_FAULT;  // Parent must restart as required.
-		Copley.Response = COPLEY_UNKNOWN;  // Re-Enter case state machine until next Copley Response update
+		Copley.Response = COPLEY_UNKNOWN; // Re-Enter case state machine until next Copley Response update
 	}
 
 }
@@ -387,7 +394,7 @@ void application(void *pvParameters) {
 
 		P14 = GPIO_Get(14);
 
-		AxisProfiler();
+		AxisProfiler(Enable);
 
 		Admin.Real_Time_ms = Admin.Real_Time_ms + Admin.Loop_Time_ms;
 

@@ -95,7 +95,7 @@ float Integrator(float _val) {
 // Safely complete a profiled event
 void End_me(int _soft) {
 	// Drive.Enable = false;
-	if (_soft == 1){
+	if (_soft == 1) {
 		Drive.Command = M4_JOYSTICK;
 	} else {
 		Drive.Command = OFF;
@@ -121,7 +121,7 @@ void Profile_SRamp() { // For S ramped movement using Servo for S ramping
 		//	pc.printf("\n\r Move Outside Limits");
 	}
 
-	if (D < 0){
+	if (D < 0) {
 		D = D * -1;
 		Drive.sysjogdir = -1;
 	} else {
@@ -172,7 +172,7 @@ void M4_Joystick() {
 	joy_demand = Drive.Joy_Demand / Drive.Joy_SF;
 	//joy_demand = joy_demand / 20;
 
-	if (joy_demand <= -(joy_deadband )) {
+	if (joy_demand <= -(joy_deadband)) {
 		Drive.sysjogdir = -1;
 		Drive.Jog = -(joy_demand + joy_deadband);
 	} else if (joy_demand >= joy_deadband) {
@@ -181,15 +181,15 @@ void M4_Joystick() {
 	} else {
 		Drive.Jog = 0;
 	}
-/*
-	Drive.Jog = joy_demand / 10000;
-	if (Drive.Jog >= 0){
-		Drive.sysjogdir = 1;
-	} else {
-		Drive.sysjogdir = -1;
-		Drive.Jog = Drive.Jog * -1;
-	}
-*/
+	/*
+	 Drive.Jog = joy_demand / 10000;
+	 if (Drive.Jog >= 0){
+	 Drive.sysjogdir = 1;
+	 } else {
+	 Drive.sysjogdir = -1;
+	 Drive.Jog = Drive.Jog * -1;
+	 }
+	 */
 	if (Drive.Jog <= joy_previous) { // Slowing down
 		joy_limited_decel = joy_previous - joy_decel;
 		if (Drive.Jog < joy_limited_decel) {
@@ -256,7 +256,7 @@ void M4_Fade() {
 			End_me(1);
 		}
 		// compute the new velocity and position demand:
-		Drive.sysdojog = s *  Drive.sysjogdir;
+		Drive.sysdojog = s * Drive.sysjogdir;
 		if ((T - fadetime) >= 0) {
 			Drive.Fade_Run_Time = (T - fadetime);
 		} else {
@@ -319,7 +319,7 @@ void M7_Pos_Follow() {
 // **********************************************************************
 // AXIS PROFILER TO RUN AT 1 kHz
 // Depending on the value of Drive.Command different things will happen ////
-void AxisProfiler() {
+void AxisProfiler(int _En) {
 	if (Drive.Command == OFF) {
 		//Drive.SysProfilerVel = 0;
 		setup = 0; // This prevents the fade playing out that remaining if a system disable / enable cycle interrupts a fade.
@@ -365,30 +365,39 @@ void AxisProfiler() {
 		//Motor_Setup();
 	}
 
-	Pos_Demand_Generator();
+	Pos_Demand_Generator(_En);
 
 }
 
-void Pos_Demand_Generator() {
+void Pos_Demand_Generator(int _En) {
+
+	if (_En == 1) {
 // The profiler generates a position demand which must be processed and sent to the motor loop as a velocity demand
 // **********************************************************
 // Generate perfect velocity demand for the System:
-	Drive.SysProfilerVel = Drive.SysDemandPos - Drive.SysDemand_Prev;
-	Drive.SysDemand_Prev = Drive.SysDemandPos;
+		Drive.SysProfilerVel = Drive.SysDemandPos - Drive.SysDemand_Prev;
+		Drive.SysDemand_Prev = Drive.SysDemandPos;
 // **********************************************************
 
 //  Calculate follow error:
-	Drive.Sys_follow_error = Drive.SysDemandPos - Drive.System_position;
+		Drive.Sys_follow_error = Drive.SysDemandPos - Drive.System_position;
 
 // Apply proportional and feed forward gain to the System Velocity demand
-	Drive.SysDerivedVel = ((Drive.SysProfilerVel * Drive.Kff_Sys)
-			+ (Drive.Sys_follow_error * Drive.Kp_Sys));
+		Drive.SysDerivedVel = ((Drive.SysProfilerVel * Drive.Kff_Sys)
+				+ (Drive.Sys_follow_error * Drive.Kp_Sys));
 
 // Apply Integral Gain to the System Velocity demand
-	Drive.SysDerivedVel = Drive.SysDerivedVel
-			+ (Integrator(Drive.Sys_follow_error) * Drive.Ki_Sys);
+		Drive.SysDerivedVel = Drive.SysDerivedVel
+				+ (Integrator(Drive.Sys_follow_error) * Drive.Ki_Sys);
 
-	Drive.SysUnit_Sec = Drive.SysDerivedVel * (1/LOOPs);
-	//Drive.System_position = Drive.SysDemandPos;
+		Drive.SysUnit_Sec = Drive.SysDerivedVel * (1 / LOOPs);
+		//Drive.System_position = Drive.SysDemandPos;
+	} else {
+		// Force everything to safe values
+		Drive.SysDerivedVel = 0;
+		Drive.SysUnit_Sec = 0;
+		Drive.SysDemand_Prev = Drive.SysDemandPos;
+	}
+
 }
 

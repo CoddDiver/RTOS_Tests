@@ -15,6 +15,7 @@
 
 int poll = 0;
 char Veldem[40];
+char Posdem[40];
 int temp_dir = 0;
 const char space2[2] = " ";
 char *position;
@@ -50,12 +51,12 @@ void Copley_Disable(void){
 }
 
 void Copley_Enable(void){
-	Send_UART("s r0x32 0\r"); // Set the pos register to correct value
-	Copley_Read(COPLEY_OK);
+	//Send_UART("s r0x32 0\r"); // Set the pos register to correct value
+	//Copley_Read(COPLEY_OK);
 	Send_UART("s r0x24 21\r");
 	Copley_Read(COPLEY_OK);
+	Copley_Wait(5);
 	Copley.Case_Status = COP_ENABLED;
-
 }
 
 void Copley_Configure() {
@@ -159,7 +160,12 @@ void Copley_Get_Pos(void){
 	Copley_Read(COPLEY_POSITION);
 
 }
+void Copley_Set_Pos(float _pos){
+	sprintf(Veldem, "s r0x32 %d\r", _pos); // x10 because Copley needs units of 0.1 counts/s.
+	Send_UART("g r0x32\r");  // Read position register (in encoder counts)
+	Copley_Read(COPLEY_POSITION);
 
+}
 void Copley_Wait(int ms) {
 	vTaskDelay(configTICK_RATE_HZ * ms / 100);
 }
