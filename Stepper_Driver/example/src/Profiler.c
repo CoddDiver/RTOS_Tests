@@ -65,8 +65,7 @@ double LOOPs = 0.005;
 bool setup = false;
 double fadetime;
 
-extern char VelCopley_Template[];
-extern char VelCopley[];
+
 extern char Veldem[];
 bool Soak_dir = false;  // Flag for soak direction
 

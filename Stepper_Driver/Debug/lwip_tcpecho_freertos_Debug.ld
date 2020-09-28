@@ -6,7 +6,7 @@
  * Generated linker script file for LPC4088
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 30-Jul-2020 10:06:53
+ * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 28-Sep-2020 11:24:36
  */
 
 INCLUDE "lwip_tcpecho_freertos_Debug_library.ld"

@@ -1,5 +1,5 @@
 /*
- * Main Application for Network Controllers
+ * Main Application for Network Stepper
  *
  */
 
@@ -73,15 +73,12 @@ int enablecount = 0;
 int sendtimer = 0;
 int sendcount = 0;
 
-char VelCopley_Template[] = "s r0xcb ";
-char VelCopley[50];
-
 bool LED_3_toggle = false;
 bool LED4_Toggle = false;
 bool GPIO34_Toggle = false;
 
 int Drivepos = 0;
-xTaskHandle COPLEY_TASK_HANDLE;
+xTaskHandle STEPPER_TASK_HANDLE;
 xTaskHandle APPLICATION_TASK_HANDLE;
 xTaskHandle TCP_TASK_HANDLE;
 
@@ -124,10 +121,16 @@ static void prvSetupHardware(void) {
 	Board_LED_Set(2, false);
 	Board_LED_Set(3, false);
 	Board_LED_Set(4, false);
-	// GPIO 33, 34, 14 are available
+
 	GPIO_Set(33, false);
 	GPIO_Set(34, false);
-	//GPIO_Set(14, false);
+
+	GPIO_Set(27, false);
+	GPIO_Set(28, false);
+	GPIO_Set(29, false);
+	GPIO_Set(30, false);
+
+	//GPIO_Set(14, false);  14 is an input
 }
 
 /*****************************************************************************
@@ -141,9 +144,8 @@ void Enable_Drive(void) {
 
 	Stepper.Case_Status = COP_TRY_ENABLE;
 
-
-
 }
+
 void Fade(void) {
 	Drive.Fade_Target = pan;
 	Drive.Fade_Time = duration;
@@ -295,7 +297,7 @@ void BuildOut() {
 	strcat(OutBound, space);
 }
 
-void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
+void Stepper_Manager(void *pvParameters) { // Task to look after the Copley.
 
 	Stepper.Case_Status = COP_STARTING;
 	while (1) {
@@ -306,7 +308,7 @@ void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 			switch (Stepper.Case_Status) {
 
 			case COP_STARTING:
-				Copley_Configure(); // Set up leaving Copley disabled
+
 				DEBUGOUT("COPLEY CONFIGURED\r\n");
 				Stepper.Case_Status = COP_DISABLED;
 
@@ -319,7 +321,7 @@ void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 				break;
 			case COP_TRY_ENABLE:
 				//Application must check position profiler is clean for startup
-				Copley_Enable();
+
 				Enable = 1;
 				break;
 			case COP_ENABLED:
@@ -338,7 +340,7 @@ void Copley_Manager(void *pvParameters) { // Task to look after the Copley.
 				//vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
 				break;
 			case COP_TRY_DISABLE:
-				Copley_Disable();
+
 
 				break;
 			case COP_FAULT:
@@ -427,7 +429,7 @@ int main(void) {
 	Chip_DAC_Init(LPC_DAC);
 	Setup_UART_SELECTION(9600);
 
-	DEBUGOUT("COPLEY MOTION CONTROLLER V5\r\n\r\n");
+	DEBUGOUT("STEPPER MOTION CONTROLLER V1\r\n\r\n");
 
 	Admin_setup();
 	// Initialise the Axis array
@@ -437,9 +439,9 @@ int main(void) {
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle* ) APPLICATION_TASK_HANDLE);
 
-	xTaskCreate(Copley_Manager, (signed char* ) "Copley_Manager",
+	xTaskCreate(Stepper_Manager, (signed char* ) "Copley_Manager",
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),
-			(xTaskHandle* ) COPLEY_TASK_HANDLE);
+			(xTaskHandle* ) STEPPER_TASK_HANDLE);
 
 	xTaskCreate(TCP_Manager, (signed char* ) "TCP_Manager",
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),

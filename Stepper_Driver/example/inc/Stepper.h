@@ -1,7 +1,7 @@
 /*
- * Copley.h
+ * Stepper.h
  *
- *  Created on: 21 Jul 2020
+ *  Created on: 28 Sept 2020
  *      Author: Andrew
  */
 
@@ -30,13 +30,10 @@ struct MyStepper {
 } Stepper;
 
 int readCopleyResponse(char *ToRead);
-void Copley_Disable(void);
-void Copley_Enable(void);
-void Copley_Configure();
-void Copley_Read(int _why);
+
 void Stepper_Send_Demand(int _speed);
 void Set_Direction(int _dir);
 void Stepper_Get_Pos(void);
 void Stepper_Set_Pos(float _pos);
-void Copley_Wait(int ms);
+void Stepper_Wait(int ms);
 #endif /* INC_STEPPER_H_ */
