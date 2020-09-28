@@ -6,7 +6,6 @@
  */
 #include "Stepper.h"
 #include "board.h"
-#include "UART_Manager.h"
 
 #include "lwip/timers.h"
 
@@ -18,7 +17,7 @@ int temp_dir = 0;
 
 void Stepper_Move(int _speed) {
 // _speed to be in units of motor encoder counts/s
-	if (Stepper.Case_Status == COP_ENABLED) {
+	if (Stepper.Case_Status == STEP_ENABLED) {
 
 		if (_speed >= 0) {
 			temp_dir = 1;
@@ -28,7 +27,7 @@ void Stepper_Move(int _speed) {
 		}
 		if (temp_dir != Stepper.Dir_Setting) {
 			Stepper.Dir_Setting = temp_dir;
-			Set_Direction(Stepper.Dir_Setting);
+			//Set_Direction(Stepper.Dir_Setting);
 		} else {
 
 		}
@@ -36,30 +35,29 @@ void Stepper_Move(int _speed) {
 	}
 }
 
-void Set_Direction(int _dir) {
-	if (_dir >= 0) {
-
-	} else {
-
-	}
-
-}
-
-void Stepper_Get_Pos(void) {
-
-}
-void Stepper_Set_Pos(float _pos) {
-
-}
 void Stepper_Wait(int ms) {
 	vTaskDelay(configTICK_RATE_HZ * ms / 100);
 }
 
-void Stepper_Step() {
+void Stepper_Disable() {
+	COIL1(0);
+	COIL2(0);
+	COIL3(0);
+	COIL4(0);
+}
 
-	Steps++;
-	if (Steps > 7) {
-		Steps = 0;
+void Stepper_Step(int _dir) {
+
+	if (_dir > 0) {
+		Steps++;
+		if (Steps > 7) {
+			Steps = 0;
+		}
+	} else {
+		Steps--;
+		if (Steps < 0) {
+			Steps = 7;
+		}
 	}
 
 	switch (Steps) {
@@ -99,7 +97,6 @@ void Stepper_Step() {
 		COIL2(1);
 		COIL3(0);
 		COIL4(0);
-
 		break;
 	case 6:
 		COIL1(1);

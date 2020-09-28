@@ -4,10 +4,9 @@ core_cm4.h:1550:22:NVIC_SetPriority	16	static
 uart_17xx_40xx.h:337:20:Chip_UART_IntEnable	16	static
 uart_17xx_40xx.h:390:20:Chip_UART_SetupFIFOS	16	static
 uart_17xx_40xx.h:405:20:Chip_UART_ConfigData	16	static
-UART_Manager.c:30:6:UART4_IRQHandler	8	static
-UART_Manager.c:34:6:Setup_UART_SELECTION	16	static
-UART_Manager.c:62:6:Send_UART	16	static
-UART_Manager.c:66:6:Poll_UART_For_String	16	static
-UART_Manager.c:76:6:Poll_UART_char	8	static
-UART_Manager.c:93:6:deinnit_UART_SELECTION	8	static
-UART_Manager.c:99:5:pollCopley	8	static
+UART_Manager.c:29:6:UART4_IRQHandler	8	static
+UART_Manager.c:33:6:Setup_UART_SELECTION	16	static
+UART_Manager.c:61:6:Send_UART	16	static
+UART_Manager.c:65:6:Poll_UART_For_String	16	static
+UART_Manager.c:75:6:Poll_UART_char	8	static
+UART_Manager.c:92:6:deinnit_UART_SELECTION	8	static

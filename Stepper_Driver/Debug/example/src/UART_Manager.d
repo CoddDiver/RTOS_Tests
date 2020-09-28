@@ -54,8 +54,7 @@ example/src/UART_Manager.o example/src/UART_Manager.d: \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/uda1380.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board_api.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
- C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h \
- C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Stepper.h
+ C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h
 
 ../example/src/UART_Manager.h:
 
@@ -168,5 +167,3 @@ C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board_api.h
 C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h:
-
-C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Stepper.h:

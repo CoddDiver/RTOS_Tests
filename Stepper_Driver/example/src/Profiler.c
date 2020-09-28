@@ -103,7 +103,7 @@ void End_me(int _soft) {
 	Drive.Jog = 0;
 	Drive.Run_Count_Jog = 0;
 	setup = false;
-	DEBUGOUT("End_me Completed");
+	DEBUGOUT("End_me Completed\r\n");
 }
 
 // **********************************************************************

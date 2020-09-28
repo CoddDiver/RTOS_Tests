@@ -9,7 +9,6 @@
 #include "chip.h"
 #include <stdio.h>
 #include <string.h>
-#include <Stepper.h>
 
 /* Transmit and receive ring buffers */
 STATIC RINGBUFF_T txring, rxring;
@@ -96,14 +95,4 @@ void deinnit_UART_SELECTION(void) {
 	Chip_UART_DeInit(UART_SELECTION);
 }
 
-int pollCopley() {
-	Stepper.Response = 0;
-	while (1) {
-		Poll_UART();
-		if (Stepper.Response == COPLEY_OK || Stepper.Response == COPLEY_ERROR) {
-			return Stepper.Response;
-		}
-	}
-	return COPLEY_UNKNOWN;
-}
 

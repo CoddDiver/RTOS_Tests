@@ -142,7 +142,7 @@ void Enable_Drive(void) {
 	sprintf(header, "%s", "Enable");
 	Drive.SysDemandPos = Drive.System_position;
 
-	Stepper.Case_Status = COP_TRY_ENABLE;
+	Stepper.Case_Status = STEP_TRY_ENABLE;
 
 }
 
@@ -242,7 +242,7 @@ void BreakIn() {
 				End_me(0);
 				Drive.SysProfilerVel = 0;
 				Enable = 0;
-				Stepper.Case_Status = COP_TRY_DISABLE;
+				Stepper.Case_Status = STEP_TRY_DISABLE;
 				break;
 			case 20:  //Change gain
 				sprintf(header, "%s", "GAIN_UPDATED");
@@ -299,64 +299,64 @@ void BuildOut() {
 
 void Stepper_Manager(void *pvParameters) { // Task to look after the Copley.
 
-	Stepper.Case_Status = COP_STARTING;
+	Stepper.Case_Status = STEP_STARTING;
 	while (1) {
-		while (Stepper.Response != COPLEY_ERROR) {
+		while (Stepper.Response != STEPPER_ERROR) {
 			// Will need an external keep alive is case of no responses at all!
 			vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
 
 			switch (Stepper.Case_Status) {
 
-			case COP_STARTING:
+			case STEP_STARTING:
 
 				DEBUGOUT("COPLEY CONFIGURED\r\n");
-				Stepper.Case_Status = COP_DISABLED;
+				Stepper.Case_Status = STEP_DISABLED;
 
 				break;
-			case COP_DISABLED:
-				Stepper_Get_Pos();
+			case STEP_DISABLED:
+
 				Drive.System_position = Stepper.Position;
 				Drive.System_position = Drive.System_position / Drive.Ratio;
-				// Wait for parent application to enable the drives using state COP_TRY_ENABLE
+				// Wait for parent application to enable the drives using state STEP_TRY_ENABLE
 				break;
-			case COP_TRY_ENABLE:
+			case STEP_TRY_ENABLE:
 				//Application must check position profiler is clean for startup
-				Stepper.Case_Status = COP_ENABLED;
+				Stepper.Case_Status = STEP_ENABLED;
 				Enable = 1;
 				break;
-			case COP_ENABLED:
-				Stepper_Step();
+			case STEP_ENABLED:
+				Stepper_Step(-1);
 				Board_LED_Set(3, LED_3_toggle);
 				LED_3_toggle = !LED_3_toggle;
 				if (Enable == 1) {
 					Stepper.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
 					//Stepper_Send_Demand(Stepper.VelDemand);
 				}
-				Stepper_Get_Pos();
+
 				Drive.System_position = Stepper.Position;
 				Drive.System_position = Drive.System_position / Drive.Ratio;
 				//DEBUGOUT("Pos = %d\r", Copley.Position);
 
 				//vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
 				break;
-			case COP_TRY_DISABLE:
-
-
+			case STEP_TRY_DISABLE:
+				Stepper_Disable();
+				Stepper.Case_Status = STEP_DISABLED;
 				break;
-			case COP_FAULT:
+			case STEP_FAULT:
 
 				break;
 			default:
-				DEBUGOUT("DROPPED OFF COPLEY STATE MACHINE");
+				DEBUGOUT("DROPPED OFF STEPPER STATE MACHINE");
 			}
 		}
-		DEBUGOUT("******** COPLEY RECOVERY PROGRAM *************");
-		// Should call any system level kill code as required, or delegate to parent on COP_FAULT.
+		DEBUGOUT("******** STEPPER RECOVERY PROGRAM *************");
+		// Should call any system level kill code as required, or delegate to parent on STEP_FAULT.
 		End_me(0);
 		Drive.SysProfilerVel = 0;
 		Enable = 0;
-		Stepper.Case_Status = COP_FAULT;  // Parent must restart as required.
-		Stepper.Response = COPLEY_UNKNOWN; // Re-Enter case state machine until next Copley Response update
+		Stepper.Case_Status = STEP_FAULT;  // Parent must restart as required.
+		Stepper.Response = STEPPER_UNKNOWN; // Re-Enter case state machine until next Copley Response update
 	}
 
 }
