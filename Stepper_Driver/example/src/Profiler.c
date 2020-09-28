@@ -9,10 +9,10 @@
 #include "Profiler.h"
 #include "MyAdmin.h"
 #include "board.h"
-#include "Copley.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <Stepper.h>
 
 // Added for Joystick Function
 
