@@ -1,0 +1,8 @@
+core_cm4.h:1467:22:NVIC_EnableIRQ	16	static
+core_cm4.h:1550:22:NVIC_SetPriority	16	static
+enet_17xx_40xx.h:681:20:Chip_ENET_Set100Mbps	16	static
+enet_17xx_40xx.h:691:20:Chip_ENET_Set10Mbps	16	static
+Network_Link.c:54:6:tcpip_init_done_signal	16	static
+Network_Link.c:62:6:SetupIFTask	24	static
+Network_Link.c:117:6:netcheck	8	static
+Network_Link.c:183:6:msDelay	16	static

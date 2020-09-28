@@ -1,0 +1,10 @@
+Profiler.c:75:6:Set_Loop_Tick_Time	24	static
+Profiler.c:81:7:Integrator	24	static
+Profiler.c:96:6:End_me	16	static
+Profiler.c:112:6:Profile_SRamp	16	static
+Profiler.c:170:6:M4_Joystick	4	static
+Profiler.c:222:6:M4_Fade	32	static
+Profiler.c:274:6:M4_Soak	16	static
+Profiler.c:307:6:M7_Pos_Follow	16	static
+Profiler.c:322:6:AxisProfiler	16	static
+Profiler.c:372:6:Pos_Demand_Generator	32	static
