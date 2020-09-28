@@ -127,7 +127,7 @@ void deinnit_UART_SELECTION(void) {
 }
 
 int readCopleyResponse(){
-	char espResponse=UNKNOWN;
+	char espResponse=COPLEY_UNKNOWN;
 	if (strstr(NEMA, "SEND OK") != NULL){
 		espResponse=SEND_OK;
 	} else if (strstr(NEMA, "OK") != NULL){

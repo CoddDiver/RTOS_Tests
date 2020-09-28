@@ -14,7 +14,7 @@
 
 #define BUFFER_SIZE 256
 #define REQ_LINE_BUFF_SIZE 100
-#define UNKNOWN 0
+#define COPLEY_UNKNOWN 0
 #define COPLEY_OK 1
 #define ESPERROR 2
 #define FAIL 3
