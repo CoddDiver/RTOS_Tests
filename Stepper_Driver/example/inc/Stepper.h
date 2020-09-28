@@ -29,11 +29,14 @@ struct MyStepper {
 	int VelDemand; // Velocity in 1 counts/s
 } Stepper;
 
-int readCopleyResponse(char *ToRead);
-
-void Stepper_Send_Demand(int _speed);
+void Stepper_Step();
+void Stepper_Move(int _speed);
 void Set_Direction(int _dir);
 void Stepper_Get_Pos(void);
 void Stepper_Set_Pos(float _pos);
 void Stepper_Wait(int ms);
+void COIL1(int _set);
+void COIL2(int _set);
+void COIL3(int _set);
+void COIL4(int _set);
 #endif /* INC_STEPPER_H_ */

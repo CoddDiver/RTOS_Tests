@@ -227,7 +227,7 @@ void BreakIn() {
 			case 3:  // Enable
 				enablecount++;
 				Enable_Drive();
-
+				DEBUGOUT("ENABLE DRIVE\r\n");
 				break;
 			case 10: //Polling
 				if (Enable == 1) {
@@ -262,7 +262,7 @@ void BreakIn() {
 			//command = -1; //Flag the failure
 			strcpy(InBound, "\0");
 			fail++;
-			DEBUGOUT("%d\r", fail);
+			//DEBUGOUT("%d\r", fail);
 		}
 	}
 }
@@ -321,16 +321,16 @@ void Stepper_Manager(void *pvParameters) { // Task to look after the Copley.
 				break;
 			case COP_TRY_ENABLE:
 				//Application must check position profiler is clean for startup
-
+				Stepper.Case_Status = COP_ENABLED;
 				Enable = 1;
 				break;
 			case COP_ENABLED:
-
+				Stepper_Step();
 				Board_LED_Set(3, LED_3_toggle);
 				LED_3_toggle = !LED_3_toggle;
 				if (Enable == 1) {
 					Stepper.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
-					Stepper_Send_Demand(Stepper.VelDemand);
+					//Stepper_Send_Demand(Stepper.VelDemand);
 				}
 				Stepper_Get_Pos();
 				Drive.System_position = Stepper.Position;
@@ -439,7 +439,7 @@ int main(void) {
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle* ) APPLICATION_TASK_HANDLE);
 
-	xTaskCreate(Stepper_Manager, (signed char* ) "Copley_Manager",
+	xTaskCreate(Stepper_Manager, (signed char* ) "Stepper_Manager",
 			(unsigned short ) 256, NULL, (tskIDLE_PRIORITY + 1UL),
 			(xTaskHandle* ) STEPPER_TASK_HANDLE);
 

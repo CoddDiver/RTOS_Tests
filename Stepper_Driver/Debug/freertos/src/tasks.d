@@ -1,7 +1,7 @@
 freertos/src/tasks.o freertos/src/tasks.d: ../freertos/src/tasks.c \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/FreeRTOS.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/projdefs.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/FreeRTOSConfig.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/FreeRTOS.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/projdefs.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/FreeRTOSConfig.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/chip.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
@@ -57,20 +57,20 @@ freertos/src/tasks.o freertos/src/tasks.d: ../freertos/src/tasks.c \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board_api.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/portable.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/portmacro.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/mpu_wrappers.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/task.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/list.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/timers.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/task.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/StackMacros.h
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/portable.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/portmacro.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/mpu_wrappers.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/task.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/list.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/timers.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/task.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/StackMacros.h
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/FreeRTOS.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/FreeRTOS.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/projdefs.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/projdefs.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/FreeRTOSConfig.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/FreeRTOSConfig.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h:
 
@@ -182,18 +182,18 @@ C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/portable.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/portable.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/portmacro.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/portmacro.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/mpu_wrappers.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/mpu_wrappers.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/task.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/task.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/list.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/list.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/timers.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/timers.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/task.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/task.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\freertos\inc/StackMacros.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\freertos\inc/StackMacros.h:

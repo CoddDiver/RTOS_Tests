@@ -1,7 +1,7 @@
 example/src/Axis_Control.o example/src/Axis_Control.d: \
  ../example/src/Axis_Control.c \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Profiler.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Profiler.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/chip.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
@@ -57,14 +57,14 @@ example/src/Axis_Control.o example/src/Axis_Control.d: \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board_api.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Control.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Profiler.h \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/MyAdmin.h
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Control.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Profiler.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/MyAdmin.h
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Profiler.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Profiler.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h:
 
@@ -176,10 +176,10 @@ C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Control.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Control.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Profiler.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Profiler.h:
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/MyAdmin.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/MyAdmin.h:

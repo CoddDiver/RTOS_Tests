@@ -1,6 +1,6 @@
 example/src/Axis_Configuration.o example/src/Axis_Configuration.d: \
  ../example/src/Axis_Configuration.c \
- C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h \
+ C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/chip.h \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
@@ -57,7 +57,7 @@ example/src/Axis_Configuration.o example/src/Axis_Configuration.d: \
  C:\Embedded_Programs\Network_Controller\lpc_chip_40xx\inc/lpc_types.h \
  C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/lpc_phy.h
 
-C:\Embedded_Programs\Network_Controller\Copley_Controller\example\inc/Axis_Configuration.h:
+C:\Embedded_Programs\Network_Controller\Stepper_Driver\example\inc/Axis_Configuration.h:
 
 C:\Embedded_Programs\Network_Controller\lpc_board_ea_devkit_4088\inc/board.h:
 

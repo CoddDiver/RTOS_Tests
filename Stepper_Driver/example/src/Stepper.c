@@ -13,16 +13,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int poll = 0;
-char Veldem[40];
-char Posdem[40];
+int Steps = 0;
 int temp_dir = 0;
-const char space2[2] = " ";
-char *position;
-char Response[32];
 
-
-void Stepper_Send_Demand(int _speed) {
+void Stepper_Move(int _speed) {
 // _speed to be in units of motor encoder counts/s
 	if (Stepper.Case_Status == COP_ENABLED) {
 
@@ -51,15 +45,92 @@ void Set_Direction(int _dir) {
 
 }
 
-void Stepper_Get_Pos(void){
-
-
+void Stepper_Get_Pos(void) {
 
 }
-void Stepper_Set_Pos(float _pos){
-
+void Stepper_Set_Pos(float _pos) {
 
 }
 void Stepper_Wait(int ms) {
 	vTaskDelay(configTICK_RATE_HZ * ms / 100);
+}
+
+void Stepper_Step() {
+
+	Steps++;
+	if (Steps > 7) {
+		Steps = 0;
+	}
+
+	switch (Steps) {
+	case 0:
+		COIL1(0);
+		COIL2(0);
+		COIL3(0);
+		COIL4(1);
+		break;
+	case 1:
+		COIL1(0);
+		COIL2(0);
+		COIL3(1);
+		COIL4(1);
+		break;
+	case 2:
+		COIL1(0);
+		COIL2(0);
+		COIL3(1);
+		COIL4(0);
+		break;
+	case 3:
+		COIL1(0);
+		COIL2(1);
+		COIL3(1);
+		COIL4(0);
+
+		break;
+	case 4:
+		COIL1(0);
+		COIL2(1);
+		COIL3(0);
+		COIL4(0);
+		break;
+	case 5:
+		COIL1(1);
+		COIL2(1);
+		COIL3(0);
+		COIL4(0);
+
+		break;
+	case 6:
+		COIL1(1);
+		COIL2(0);
+		COIL3(0);
+		COIL4(0);
+		break;
+	case 7:
+		COIL1(1);
+		COIL2(0);
+		COIL3(0);
+		COIL4(1);
+		break;
+	default:
+		COIL1(0);
+		COIL2(0);
+		COIL3(0);
+		COIL4(0);
+		break;
+	}
+}
+
+void COIL1(int _set) {
+	GPIO_Set(27, _set);
+}
+void COIL2(int _set) {
+	GPIO_Set(28, _set);
+}
+void COIL3(int _set) {
+	GPIO_Set(29, _set);
+}
+void COIL4(int _set) {
+	GPIO_Set(30, _set);
 }
