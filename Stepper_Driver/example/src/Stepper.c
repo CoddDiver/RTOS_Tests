@@ -59,6 +59,7 @@ void Stepper_Step(int _dir) {
 			Steps = 7;
 		}
 	}
+    Stepper.Steps_Progress++;
 
 	switch (Steps) {
 	case 0:

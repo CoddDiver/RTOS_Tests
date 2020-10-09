@@ -149,7 +149,10 @@ void Enable_Drive(void) {
 void Fade(void) {
 	Drive.Fade_Target = pan;
 	Drive.Fade_Time = duration;
-	Drive.Command = M4_FADE;
+	//Drive.Command = M4_FADE;
+
+	Stepper.Steps_Demand = Drive.Fade_Target;
+	Stepper.Steps_Progress = 0;
 	DEBUGOUT("Calling Fade\n\r");
 }
 
@@ -325,16 +328,26 @@ void Stepper_Manager(void *pvParameters) { // Task to look after the Copley.
 				Enable = 1;
 				break;
 			case STEP_ENABLED:
-				Stepper_Step(-1);
+				//Stepper_Step(-1);
 				Board_LED_Set(3, LED_3_toggle);
 				LED_3_toggle = !LED_3_toggle;
 				if (Enable == 1) {
-					Stepper.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
+
+					if(Stepper.Steps_Demand > Drive.System_position){
+						Stepper.Dir_Setting = 1;
+					} else {
+						Stepper.Dir_Setting = -1;
+					}
+					if(Drive.System_position != Stepper.Steps_Demand){
+						Stepper_Step(Stepper.Dir_Setting);
+						Drive.System_position = Drive.System_position + Stepper.Dir_Setting;
+					}
+					//Stepper.VelDemand = Drive.SysUnit_Sec * Drive.Ratio;
 					//Stepper_Send_Demand(Stepper.VelDemand);
 				}
 
-				Drive.System_position = Stepper.Position;
-				Drive.System_position = Drive.System_position / Drive.Ratio;
+				//Drive.System_position = Stepper.Steps_Progress;
+				//Drive.System_position = Drive.System_position / Drive.Ratio;
 				//DEBUGOUT("Pos = %d\r", Copley.Position);
 
 				//vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div));
@@ -371,7 +384,10 @@ void TCP_Manager(void *pvParameters) {
 			GPIO_Set(34, GPIO34_Toggle);
 			broken = 0;
 			BuildOut();
-			tcp_send(OutBound);
+			//tcp_send(OutBound);
+			tcp_send("Hello1");
+			tcp_send("Hello2");
+			tcp_send("Hello3");
 			GPIO34_Toggle = !GPIO34_Toggle;
 		}
 
@@ -429,7 +445,7 @@ int main(void) {
 	Chip_DAC_Init(LPC_DAC);
 	Setup_UART_SELECTION(9600);
 
-	DEBUGOUT("STEPPER MOTION CONTROLLER V1\r\n\r\n");
+	DEBUGOUT("STEPPER MOTION CONTROLLER V4\r\n\r\n");
 
 	Admin_setup();
 	// Initialise the Axis array

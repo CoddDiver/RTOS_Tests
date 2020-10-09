@@ -21,7 +21,7 @@ void DriveAxisParameters(struct MyAxis *Axis, int mytype) {
 	    Axis->Cut_Accel_Time = 3;   // s
 		Axis->Joy_Decel_Time = 65; //ms
 		Axis->Joy_SF = 10000;  // Scales analogue input into counts/ms
-		Axis->Ratio = 100;  // -152 on FHR35, 172 on FH145
+		Axis->Ratio = 1;  // -152 on FHR35, 172 on FH145
 		Axis->System_position_offset = 1;  // Deg, not yet implemented
 		Axis->Direction = 1; // -1 or 1, inverts the direction of the motor demand   //  NONOTEC MOTOR = 1, HENGDRIVE = -1.
 		Axis->Kp_Vel = 0;

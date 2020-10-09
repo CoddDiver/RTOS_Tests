@@ -25,8 +25,10 @@ struct MyStepper {
 	int Case_Status;
 	int Dir_Setting;
 	int Response;
-	int Position;  // Encoder counts
-	int VelDemand; // Velocity in 1 counts/s
+	int Position;  // Steps
+	int VelDemand; // Steps/time unit
+	int Steps_Demand;
+	int Steps_Progress;
 } Stepper;
 
 void Stepper_Disable();
