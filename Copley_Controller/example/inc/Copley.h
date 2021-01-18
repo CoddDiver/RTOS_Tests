@@ -21,22 +21,22 @@
 #define COP_FAULT 12
 
 
-struct MyCopley {
+struct MyStepper {
 	int Case_Status;
 	int Dir_Setting;
 	int Response;
 	int Position;  // Encoder counts
 	int VelDemand; // Velocity in 1 counts/s
-} Copley;
+} Stepper;
 
 int readCopleyResponse(char *ToRead);
 void Copley_Disable(void);
 void Copley_Enable(void);
 void Copley_Configure();
 void Copley_Read(int _why);
-void Copley_Send_Demand(int _speed);
+void Stepper_Send_Demand(int _speed);
 void Set_Direction(int _dir);
-void Copley_Get_Pos(void);
-void Copley_Set_Pos(float _pos);
-void Copley_Wait(int ms);
+void Stepper_Get_Pos(void);
+void Stepper_Set_Pos(float _pos);
+void Stepper_Wait(int ms);
 #endif /* INC_COPLEY_H_ */

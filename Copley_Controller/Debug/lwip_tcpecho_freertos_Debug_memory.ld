@@ -2,11 +2,11 @@
  * GENERATED FILE - DO NOT EDIT
  * Copyright (c) 2008-2013 Code Red Technologies Ltd,
  * Copyright 2015, 2018-2019 NXP
- * (c) NXP Semiconductors 2013-2020
+ * (c) NXP Semiconductors 2013-2021
  * Generated linker script file for LPC4088
  * Created from memory.ldt by FMCreateLinkMemory
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 30-Jul-2020 10:06:53
+ * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 17-Jan-2021 17:01:57
  */
 
 MEMORY

@@ -99,11 +99,11 @@ void deinnit_UART_SELECTION(void) {
 }
 
 int pollCopley() {
-	Copley.Response = 0;
+	Stepper.Response = 0;
 	while (1) {
 		Poll_UART();
-		if (Copley.Response == COPLEY_OK || Copley.Response == COPLEY_ERROR) {
-			return Copley.Response;
+		if (Stepper.Response == COPLEY_OK || Stepper.Response == COPLEY_ERROR) {
+			return Stepper.Response;
 		}
 	}
 	return COPLEY_UNKNOWN;

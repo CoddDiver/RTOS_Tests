@@ -384,10 +384,8 @@ void TCP_Manager(void *pvParameters) {
 			GPIO_Set(34, GPIO34_Toggle);
 			broken = 0;
 			BuildOut();
-			//tcp_send(OutBound);
-			tcp_send("Hello1");
-			tcp_send("Hello2");
-			tcp_send("Hello3");
+			tcp_send(OutBound);
+
 			GPIO34_Toggle = !GPIO34_Toggle;
 		}
 
