@@ -2,11 +2,11 @@
  * GENERATED FILE - DO NOT EDIT
  * Copyright (c) 2008-2013 Code Red Technologies Ltd,
  * Copyright 2015, 2018-2019 NXP
- * (c) NXP Semiconductors 2013-2020
+ * (c) NXP Semiconductors 2013-2021
  * Generated linker script file for LPC4088
  * Created from linkscript.ldt by FMCreateLinkLibraries
- * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 02-Jul-2020 15:25:14
+ * Using Freemarker v2.3.30
+ * MCUXpresso IDE v11.3.0 [Build 5222] [2021-01-11] on 19-Feb-2021 10:19:59
  */
 
 INCLUDE "periph_eeprom_Debug_library.ld"
