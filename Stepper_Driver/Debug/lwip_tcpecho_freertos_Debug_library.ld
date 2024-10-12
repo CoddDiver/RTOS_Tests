@@ -5,8 +5,8 @@
  * (c) NXP Semiconductors 2013-2021
  * Generated linker script file for LPC4088
  * Created from library.ldt by FMCreateLinkLibraries
- * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.1.1 [Build 3241] [2020-03-02] on 10-Jan-2021 10:48:04
+ * Using Freemarker v2.3.30
+ * MCUXpresso IDE v11.3.0 [Build 5222] [2021-01-11] on 22-Feb-2021 13:58:54
  */
 
 GROUP (

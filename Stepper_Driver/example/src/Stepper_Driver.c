@@ -390,6 +390,7 @@ void TCP_Manager(void *pvParameters) {
 		}
 
 		vTaskDelay(configTICK_RATE_HZ / (Admin.TICK_RATE_HZ_div * 2));
+		//vTaskDelay(2000);
 	}
 }
 
@@ -415,6 +416,7 @@ void application(void *pvParameters) {
 		Admin.Real_Time_ms = Admin.Real_Time_ms + Admin.Loop_Time_ms;
 
 		vTaskDelay(configTICK_RATE_HZ / Admin.TICK_RATE_HZ_div);
+		//vTaskDelay(1);
 	}
 }
 
@@ -443,7 +445,7 @@ int main(void) {
 	Chip_DAC_Init(LPC_DAC);
 	Setup_UART_SELECTION(9600);
 
-	DEBUGOUT("STEPPER MOTION CONTROLLER V4\r\n\r\n");
+	DEBUGOUT("RTOS Testing V1\r\n\r\n");
 
 	Admin_setup();
 	// Initialise the Axis array
