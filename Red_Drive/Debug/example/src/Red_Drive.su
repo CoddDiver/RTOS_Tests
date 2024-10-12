@@ -1,0 +1,4 @@
+Red_Drive.c:115:13:prvSetupHardware	8	static
+Red_Drive.c:136:6:Main_Wait	16	static
+Red_Drive.c:142:6:application	16	static
+Red_Drive.c:172:5:main	24	static
