@@ -1,0 +1,8 @@
+Stepper.c:18:6:Stepper_Move	16	static
+Stepper.c:38:6:Stepper_Wait	16	static
+Stepper.c:42:6:Stepper_Disable	8	static
+Stepper.c:49:6:Stepper_Step	16	static
+Stepper.c:123:6:COIL1	16	static
+Stepper.c:126:6:COIL2	16	static
+Stepper.c:129:6:COIL3	16	static
+Stepper.c:132:6:COIL4	16	static

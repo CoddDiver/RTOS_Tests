@@ -1,0 +1,12 @@
+AC_Wireless_Controller.c:121:13:prvSetupHardware	8	static
+AC_Wireless_Controller.c:140:6:Fade	8	static
+AC_Wireless_Controller.c:152:6:mywait	4	static
+AC_Wireless_Controller.c:159:6:ESP_Configure	8	static
+AC_Wireless_Controller.c:227:5:ESP_ConnectionManager	16	static
+AC_Wireless_Controller.c:305:6:BreakIn	8	static
+AC_Wireless_Controller.c:393:6:BuildOut	8	static
+AC_Wireless_Controller.c:423:6:sendmetoo	8	static
+AC_Wireless_Controller.c:434:6:ESP_Manager	16	static
+AC_Wireless_Controller.c:444:6:application	8	static
+AC_Wireless_Controller.c:506:6:Admin_setup	4	static
+AC_Wireless_Controller.c:522:5:main	24	static

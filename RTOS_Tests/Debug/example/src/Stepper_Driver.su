@@ -1,0 +1,12 @@
+Stepper_Driver.c:114:13:prvSetupHardware	8	static
+Stepper_Driver.c:139:6:Enable_Drive	8	static
+Stepper_Driver.c:149:6:Fade	8	static
+Stepper_Driver.c:159:6:Joystick	4	static
+Stepper_Driver.c:169:6:Main_Wait	16	static
+Stepper_Driver.c:173:6:BreakIn	8	static
+Stepper_Driver.c:273:6:BuildOut	8	static
+Stepper_Driver.c:303:6:Stepper_Manager	16	static
+Stepper_Driver.c:377:6:TCP_Manager	16	static
+Stepper_Driver.c:397:6:application	16	static
+Stepper_Driver.c:425:6:Admin_setup	4	static
+Stepper_Driver.c:441:5:main	24	static
